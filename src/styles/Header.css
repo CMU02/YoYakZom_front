@@ -1,0 +1,21 @@
+header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.title {
+    width: 5vh;
+    height: 2.5vh;
+    margin-left: 5vh;
+}
+
+.title > h1 {
+    font-size: 60px;
+}
+
+
+.info > p {
+    transform: rotate(90deg);
+    position: relative;
+    top: 20vh;
+}
