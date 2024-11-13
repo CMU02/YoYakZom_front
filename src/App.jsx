@@ -15,9 +15,9 @@ function App() {
           </div>
           <div className='search-bar'>
             <input type="text" placeholder="검색하기"/>
-            <div className='search-btn'>
-              <img src='icons/search_icon.svg' alt='검색버튼'/>
-            </div>
+          </div>
+          <div className='search-btn'>
+            <img src='/icons/search_icon.svg' alt='검색버튼'/>
           </div>
         </div>
         <div className='info'>
