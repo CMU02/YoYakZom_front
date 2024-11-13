@@ -1,0 +1,166 @@
+/* 폰트 */
+@font-face {
+  font-family: 'Dokrip';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 전체 레이아웃 */
+.app-container {
+    background-image: url("./img/sample_background2.jpg");
+    font-family: 'Dokrip';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .header-left {
+    writing-mode:tb-rl;
+    text-orientation: upright;
+    position: absolute;
+    top: 50px;
+    flex: 1;
+  } 
+  
+  .header-right {
+    writing-mode:tb-rl;
+    position: absolute;
+    right: 0%;
+    flex: 1;
+  }
+  
+  .project-title {
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 30px;
+  }
+  
+  .placeholder-text {
+    color: #999;
+    text-align: right;
+  }
+  
+
+  /* 검색창과 카테고리 (초기 위치: 아래쪽) */
+  .header {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    position: absolute;
+    top: 18%;  /* 초기 위치: 화면의 중간 근처 */
+    width: 60%;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  /* 카드 클릭 시 상단으로 이동 */
+  .header.moved-up {
+    position: fixed;
+    top: 0;
+    bottom: unset;
+  }
+  
+  /* 검색바와 카테고리 스타일 */
+  .search-bar {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .categories {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* 콘텐츠 영역 */
+  .content {
+    flex: 1;
+    overflow: auto;
+    padding: 200px;
+    margin-top: 20%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 카드가 클릭되었을 때 margin-top 감소 */
+  .content-clicked {
+    margin-top: 6%;  /* 클릭 시 여백을 10%로 줄임 */
+  }
+  
+  /* 카드 목록 스타일 */
+  .card-list {
+    display: grid;
+    width: 60%;  /* header와 동일한 너비 */
+    margin: 200px auto;  /* 상단 여백과 좌우 중앙 정렬 */
+    grid-template-columns: repeat(4, 1fr);  /* 동일한 비율로 4개 열 */
+    gap: 60px;  /* 간격 조정 */
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  }
+
+  .card-list.expanded {
+    
+    
+  }
+  
+  .card {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+    height: 150px;  /* 높이 복원 */
+    width: 130px;    
+    max-width: 200px; /* 최대 너비 제한 */
+    margin: 0 auto;  /* 카드 자체를 중앙 정렬 */
+    overflow: hidden;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* 카드 상세보기 스타일 */
+  .card-detail {
+    background-color: #fff;
+    height: 400px;
+    width: 1500px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+    /* Categories 컴포넌트 스타일 */
+  .categories {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px; /* 검색창 아래 여백 */
+  }
+
+  .category-button {
+    padding: 10px 15px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .category-button:hover {
+    background-color: #bbb;
+  }
+
+  
