@@ -1,138 +1,155 @@
 @font-face {
-    font-family: 'Dokrip'; /* 사용할 폰트 이름 */
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff'); /* 폰트를 가져올 URL */
-    font-weight: normal; /* 폰트의 기본 두께 */
-    font-style: normal; /* 폰트의 기본 스타일 */
-  }
-  
-  
-  .app-container {
-    font-family: 'Dokrip';
-    margin: 0;
-    padding: 0;
-    background-image: url('/BackGround.jpg');
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-  }
-  
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2%;
-  }
-  
-  .title {
-    writing-mode: vertical-lr;
-    font-size: 82px;
-    font-weight: bold;
-  }
-  
-  .SearchLabel{
-    font-size: 22px;
-  }
-  
-  .search-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .box-border {
-    border: 1px solid black; 
-    border-radius: 10px; 
-    padding: 0.5%; 
-    display: flex;
-  }
-  
-  .search-box {
-    display: flex; 
-    align-items: center; 
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 100%;
-    background-color: white;
-  }
-  
-  .SearchBtn{
-    background-color: #4a4a48;
-  }
-  
-  .service-introduction{
-    transform: rotate(90deg);
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  input[type="text"] {
-    border: none;
-    outline: none; 
-    flex-grow: 1;
-    width: 100%; 
-  }
-  
-  button {
-    background: none; 
-    border: none; 
-    cursor: pointer; 
-  }
-  
-  .search-icon{
-    width: 80%;
-    height: auto;
-    align-items: center; 
-  }
-  
-  .category-nav {
-    display: flex;
-    justify-content: center;
-    padding: 1%;
-  }
-  
-  .category-nav button {
-    margin: 0 1%;
-    padding: 1% 2%;
-    font-size: 16px;
-    cursor: pointer;
-    border: 1px solid black;
-    border-radius: 10px;
-    background-color: #f0f0ef;  
-  }
-  
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 2%;
-  }
-  
-  .card {  
-    border: 1px solid black;
-    margin: 1%;
-    padding: 2%;
-    width: 20%;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #f0f0ef;
-    border-radius: 10px;
-  }
-  
-  .card-header {
-    font-size: 14px;
-    color: #666;
-  }
-  
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2%;
-  }
-  
-  .card-footer button {
-    padding: 0.5% 1%;
-    cursor: pointer;
-    background-color: black;
-    color: #f0f0ef;
-  }
-  
+  font-family: 'Dokrip';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff');
+  font-weight: normal; 
+  font-style: normal; 
+}
+
+
+.app-container {
+  font-family: 'Dokrip';
+  margin: 0;
+  padding: 0;
+  background-image: url('/BackGround.jpg');
+  height: auto;
+  width: 100%;
+  background-size: cover;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2%;
+}
+
+.title {
+  writing-mode: vertical-lr;
+  font-size: 82px;
+  font-weight: bold;
+}
+
+.SearchLabel{
+  font-size: 22px;
+  margin-bottom: 5%;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.box-border {
+  border: 1px solid black; 
+  border-radius: 10px; 
+  padding: 0.5%; 
+  display: flex;
+}
+
+.search-box {
+  display: flex; 
+  align-items: center; 
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 100%;
+  background-color: white;
+}
+
+.SearchBtn{
+  background-color: #4a4a48;
+}
+
+.service-introduction{
+  transform: rotate(90deg);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  border: none;
+  outline: none; 
+  flex-grow: 1;
+  width: 100%; 
+}
+.category-nav {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 2%;
+  margin-top: 2%;
+}
+
+.category-scroll {
+  display: flex;
+  gap: 2%;
+}
+
+.category-scroll button {
+  padding: 10px;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+button {
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+}
+
+.search-icon{
+  width: 80%;
+  height: auto;
+  align-items: center; 
+}
+
+.category-nav {
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+}
+
+.category-nav button {
+  margin: 0 1%;
+  padding: 1% 2%;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #f0f0ef;  
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2%;
+}
+
+.card {  
+  border: 1px solid black;
+  margin: 1%;
+  padding: 2%;
+  width: 20%;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0ef;
+  border-radius: 10px;
+}
+
+.card-header {
+  font-size: 14px;
+  color: #666;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2%;
+}
+
+.card-footer button {
+  padding: 0.5% 1%;
+  cursor: pointer;
+  background-color: black;
+  color: #f0f0ef;
+}
