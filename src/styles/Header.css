@@ -1,3 +1,4 @@
+/* 전체 헤더 스타일 */
 header {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -5,6 +6,7 @@ header {
     justify-items: center;
 }
 
+/* 제목 스타일 */
 .title {
     position: relative;
     right: 10vh;
@@ -17,6 +19,7 @@ header {
     font-size: 8rem;
 }
 
+/* 검색 컨테이너 스타일 */
 .search-container {
     display: flex;
     flex-direction: column;
@@ -28,6 +31,7 @@ header {
     left: 18.5vh;
 }
 
+/* 검색 제목 스타일 */
 .search-container > .search-title {
     text-align: center;
     font-size: 2rem;
@@ -38,12 +42,15 @@ header {
     padding: 0 0 0.875rem 1.25rem;
 }
 
-.search-container > .search-bar {
-    display: flex;
+/* 새로운 검색 래퍼 추가 */
+.search-wrapper {
+    display: flex; /* 검색 바와 버튼을 가로로 배치 */
     flex-direction: row;
+    align-items: center; /* 수직 정렬 */
 }
 
-.search-container > .search-bar > input {
+/* 검색 입력 필드 스타일 */
+.search-wrapper > .search-bar > input {
     width: 30.625rem;
     height: 4.063rem;
     flex-shrink: 0;
@@ -56,10 +63,12 @@ header {
     font-size: 16px;
 }
 
-.search-container > .search-bar > input:focus {
+.search-wrapper > .search-bar > input:focus {
     outline: none;
 }
-.search-container > .search-bar > .search-btn {
+
+/* 검색 버튼 스타일 */
+.search-wrapper > .search-btn {
     width: 6.875rem;
     height: 4.2rem;
     flex-shrink: 0;
@@ -72,12 +81,14 @@ header {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    margin-left: -4px; /* 필요시 조절 */
 }
 
-.search-container > .search-bar > .search-btn:hover {
+.search-wrapper > .search-btn:hover {
     background: #6A6A68;
 }
 
+/* 정보 텍스트 스타일 */
 .info > p {
     transform: rotate(90deg);
     position: relative;
