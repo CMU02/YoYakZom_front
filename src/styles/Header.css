@@ -24,7 +24,7 @@ header {
     height: 100%;
 
     position: relative;
-    top: 10vh;
+    top: 8.5vh;
     left: 18.5vh;
 }
 
@@ -82,7 +82,7 @@ header {
 .info > p {
     transform: rotate(90deg);
     position: relative;
-    top: 27.5vh;
+    top: 26vh;
     left: 20vh;
     width: 60vh;
     line-height: 2.5vh;
