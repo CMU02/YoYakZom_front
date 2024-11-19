@@ -1,15 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import './styles/global.css';
 import './styles/Header.css'
-import { useEffect } from 'react';
 import axios from 'axios';
 import Categories from './components/Categories';
+import Card from './components/Card';
+import Cards from './components/Cards';
 
 function App() {
   const categoriesGroupUrl = "https://server.yoyakzom.com/summary/category-group";
+  const summaryListUrl = "https://server.yoyakzom.com/summary";
 
   const [categories, setCategories] = useState([]); // 그룹별 카테고리 목록
+  const [summaryList, setSummaryList] = useState([]); // 요약글 목록
 
   useEffect(() => {
     const getCategories = async() => {
@@ -17,9 +20,14 @@ function App() {
       setCategories(response.data);
     }
 
-    getCategories();
-  }, [categories])
+    const getSummaryList = async() => {
+      const response  = await axios.get(summaryListUrl);
+      setSummaryList(response.data);
+    }
 
+    getCategories();
+    getSummaryList();
+  }, [categories, summaryList])
 
   return (
     <>
@@ -45,6 +53,8 @@ function App() {
         </div>
       </header>
       <Categories categories={categories}/>
+      {/* <Card /> */}
+      <Cards summaryList={summaryList}/>
     </>
   );
 }

@@ -1,0 +1,6 @@
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* TODO : 위치 맞추기 및 백엔드 LIST API 페이징 시스템 생각하기 */
