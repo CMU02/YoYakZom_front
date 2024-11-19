@@ -14,7 +14,9 @@ header {
 }
 
 .title > h1 {
-    font-size: 8rem;
+    font-size: 7rem;
+    font-weight: 500;
+    line-height: 12.5vh;
 }
 
 .search-container {
@@ -38,12 +40,12 @@ header {
     padding: 0 0 0.875rem 1.25rem;
 }
 
-.search-container > .search-bar {
+.search-container > .search-field {
     display: flex;
     flex-direction: row;
 }
 
-.search-container > .search-bar > input {
+.search-container > .search-field > .search-bar > input {
     width: 30.625rem;
     height: 4.063rem;
     flex-shrink: 0;
@@ -56,10 +58,11 @@ header {
     font-size: 16px;
 }
 
-.search-container > .search-bar > input:focus {
+.search-container > .search-field > .search-bar > input:focus {
     outline: none;
 }
-.search-container > .search-bar > .search-btn {
+
+.search-container > .search-field > .search-btn {
     width: 6.875rem;
     height: 4.2rem;
     flex-shrink: 0;
@@ -74,15 +77,15 @@ header {
     cursor: pointer;
 }
 
-.search-container > .search-bar > .search-btn:hover {
+.search-container > .search-btn:hover {
     background: #6A6A68;
 }
 
 .info > p {
     transform: rotate(90deg);
     position: relative;
-    top: 26vh;
-    left: 20vh;
-    width: 60vh;
+    top: 10vh;
+    left: 5vh;
+    width: 30vh;
     line-height: 2.5vh;
 }
