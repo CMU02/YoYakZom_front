@@ -9,7 +9,7 @@ export default function Card({id, category, summary, original_text, created_at, 
             </div>
 
             <div className="card-summary">
-                <p>{summary}</p>
+                <h3>{summary}</h3>
             </div>
 
             <hr className='card-hr' />

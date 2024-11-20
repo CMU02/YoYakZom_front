@@ -5,6 +5,7 @@ import './styles/Header.css'
 import axios from 'axios';
 import Categories from './components/Categories';
 import Cards from './components/Cards';
+import Summary from './components/Summary';
 
 function App() {
   const categoriesGroupUrl = "https://server.yoyakzom.com/summary/category-group";
@@ -52,8 +53,8 @@ function App() {
         </div>
       </header>
       <Categories categories={categories}/>
-      {/* <Card /> */}
-      <Cards summaryList={summaryList}/>
+      {/* <Cards summaryList={summaryList}/> */}
+      <Summary />
     </>
   );
 }

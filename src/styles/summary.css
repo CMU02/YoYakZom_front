@@ -1,0 +1,10 @@
+.summary-container {
+    background-color: white;
+    width: 135.3vh;
+    height: 79vh;
+    position: relative;
+    top: 23.5vh;
+    left: 32.5vh;
+    border-radius: 15px;
+    border: 1px solid #000;
+}

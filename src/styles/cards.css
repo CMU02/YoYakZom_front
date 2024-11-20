@@ -1,9 +1,9 @@
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     width: 150vh;
     position: relative;
-    left: 28vh;
+    left: 27vh;
     top: 25vh;
     gap: 2.5vh;
 }
