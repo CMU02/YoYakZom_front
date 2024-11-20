@@ -20,6 +20,7 @@ header {
 }
 
 /* 검색 컨테이너 스타일 */
+
 .search-container {
     display: flex;
     flex-direction: column;
@@ -30,6 +31,7 @@ header {
     top: 8.5vh;
     left: 18.5vh;
 }
+
 
 /* 검색 제목 스타일 */
 .search-container > .search-title {
