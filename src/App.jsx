@@ -4,7 +4,6 @@ import './styles/global.css';
 import './styles/Header.css'
 import axios from 'axios';
 import Categories from './components/Categories';
-import Card from './components/Card';
 import Cards from './components/Cards';
 
 function App() {
@@ -27,7 +26,7 @@ function App() {
 
     getCategories();
     getSummaryList();
-  }, [categories, summaryList])
+  }, [])
 
   return (
     <>

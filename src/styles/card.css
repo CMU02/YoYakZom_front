@@ -7,9 +7,6 @@
     border-radius: 10px;
     background: #F0F0EF;
     box-shadow: 8.5px 8.5px 5px 0px rgba(0, 0, 0, 0.25);
-
-    margin-left: 5vh;
-    margin-top: 20vh;
 }
 
 .card-category {
@@ -21,6 +18,7 @@
     border: 1px solid #000;
     border-radius: 5px;
     margin: 2vh 2vh 0 2vh;
+    background-color: #fff;
 }
 
 .card-summary {
@@ -28,6 +26,7 @@
     width: 26vh;
     height: 11.4vh;
     font-size: 1.5vh;
+    line-height: 1.75vh;
 }
 
 .card-original_text {
@@ -35,6 +34,7 @@
     width: 26vh;
     height: 4.8vh;
     font-size: 1.2vh;
+    line-height: 1.5vh;
 }
 
 .card-summary p, .card-original_text p {
