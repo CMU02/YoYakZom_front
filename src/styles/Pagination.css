@@ -1,0 +1,29 @@
+/* 페이지네이션 컨테이너 */
+.pagination-container {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    margin-top: 2vh; /* 페이지네이션 위 여백 */
+}
+
+/* 페이지네이션 버튼 */
+.pagination-button {
+    background-color: #4A4A48;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 0.5rem; /* 버튼 간 간격 */
+    font-size: 1rem;
+}
+
+/* 페이지네이션 버튼 hover */
+.pagination-button:hover {
+    background-color: #6A6A68;
+}
+
+/* 비활성화된 페이지네이션 버튼 */
+.pagination-button.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

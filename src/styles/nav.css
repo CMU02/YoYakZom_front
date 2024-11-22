@@ -1,11 +1,12 @@
 .nav-container {
     display: flex;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: auto; /* 수평 스크롤 */
     gap: 1.5rem;
     position: relative;
     align-items: center;
     justify-content: center;
     top: 19vh;
+    margin-bottom: 10%; /* 카테고리와 카드 간 간격을 두기 위해 margin 추가 */
 }
 
 .nav-item {
