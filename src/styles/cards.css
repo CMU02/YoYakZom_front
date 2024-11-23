@@ -1,11 +1,13 @@
 .cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 150vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    left: 27vh;
     top: 25vh;
-    gap: 2.5vh;
 }
 
-/* TODO : 위치 맞추기 및 백엔드 LIST API 페이징 시스템 생각하기 */
+.cards-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5vh;
+}

@@ -1,5 +1,5 @@
 .card-container {
-    width: 45vh;
+    width: 55vh;
     height: 30vh;
     display: flex;
     flex-direction: column;
@@ -7,6 +7,8 @@
     border-radius: 10px;
     background: #F0F0EF;
     box-shadow: 8.5px 8.5px 5px 0px rgba(0, 0, 0, 0.25);
+
+    transition: 0.25s ease-in-out;
 }
 
 .card-category {
@@ -23,26 +25,18 @@
 
 .card-summary {
     margin: 1.5vh 2vh 0 2vh;
-    width: 40vh;
-    height: 11.4vh;
-    font-size: 1.5vh;
-    line-height: 1.75vh;
+    width: 50.5vh;
+    height: 17vh;
+    font-size: 1.75vh;
+    line-height: 2.75vh;
 }
 
-.card-original_text {
-    margin: 1.5vh 2vh 2vh 2vh;
-    width: 40vh;
-    height: 4.8vh;
-    font-size: 1.2vh;
-    line-height: 1.5vh;
-}
-
-.card-summary h3, .card-original_text p {
+.card-summary h4 {
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
 }
 

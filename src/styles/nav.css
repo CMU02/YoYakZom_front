@@ -1,7 +1,7 @@
 .nav-container {
     display: flex;
     -webkit-overflow-scrolling: touch;
-    gap: 1.5rem;
+    gap: 2vh;
     position: relative;
     align-items: center;
     justify-content: center;

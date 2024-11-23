@@ -6,18 +6,20 @@ export default function Cards({summaryList}) {
     return (
         <>
             <div className='cards-container'>
-                {
-                    summaryList.map(({id, category, summary, original_text, created_at, view_count}) => {
-                        return <Card 
-                            key={id} 
-                            category={category}
-                            summary={summary}
-                            original_text={original_text}
-                            created_at={created_at}
-                            view_count={view_count} 
-                        />
-                    })
-                }
+                <div className='cards-list'>
+                    {
+                        summaryList.map(({id, category, summary, original_text, created_at, view_count}) => {
+                            return <Card 
+                                key={id} 
+                                category={category}
+                                summary={summary}
+                                original_text={original_text}
+                                created_at={created_at}
+                                view_count={view_count} 
+                            />
+                        })
+                    }
+                </div>
             </div>
         </>
     );

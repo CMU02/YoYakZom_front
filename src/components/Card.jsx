@@ -9,14 +9,10 @@ export default function Card({id, category, summary, original_text, created_at, 
             </div>
 
             <div className="card-summary">
-                <h3>{summary}</h3>
+                <h4>{summary}</h4>
             </div>
 
             <hr className='card-hr' />
-
-            <div className="card-original_text">
-                <p>{original_text}</p>
-            </div>
 
             <div className="card-info">
                 <div className="card-update_at">
@@ -28,7 +24,7 @@ export default function Card({id, category, summary, original_text, created_at, 
                     <p>{view_count}</p>
                 </div>
                 <div className="card-more">
-                    <p>More</p>
+                    <p>원본 보기</p>
                 </div>
             </div>
         </div>
