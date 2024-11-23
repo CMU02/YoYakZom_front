@@ -17,7 +17,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(null);  // 선택된 카드 상태 추가
 
   const [currentPage, setCurrentPage] = useState(1);  
-  const pageSize = 8;  
+  const pageSize = 12;  
   const [totalCards, setTotalCards] = useState(0);
 
   useEffect(() => {
