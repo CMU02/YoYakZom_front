@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/Card.css';
 
-// originalText를 잘라주는 함수
 const truncateText = (text, maxLength = 100) => {
   if (text.length > maxLength) {
     return text.substring(0, maxLength) + '...';
@@ -9,7 +8,7 @@ const truncateText = (text, maxLength = 100) => {
   return text;
 };
 
-export default function Card({ category, summary, originalText, createdAt, viewCount }) {
+export default function Card({ id, category, summary, originalText, createdAt, viewCount, onMoreClick }) {
   return (
     <div className="card">
       <div className="card-header">
@@ -25,7 +24,9 @@ export default function Card({ category, summary, originalText, createdAt, viewC
           <span className="card-date">{createdAt}</span>
           <span className="card-views">👁 {viewCount}</span>
         </div>
-        <button className="card-button">More</button>
+        <button className="card-button" onClick={() => onMoreClick({ id, summary, originalText, createdAt, viewCount })}>
+          More
+        </button>
       </div>
     </div>
   );

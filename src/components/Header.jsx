@@ -31,7 +31,7 @@ function Header({ searchQuery, handleSearchChange, onSearch }) {
         </div>
       </div>
       <div className="info">
-        <a href="#">서비스 소개 글</a>
+        <a href="#">정보 과부하 속에서 핵심 내용을 빠르게 파악하기 어려운 시대입니다. &apos;3줄요약&apos; 서비스는 이러한 문제를 해결하기 위해 설계된 솔루션으로, 방대한 글이나 자료를 3줄로 간략하게 요약하여 사용자들이 중요한 정보를 놓치지 않고 효율적으로 습득할 수 있도록 돕습니다.</a>
       </div>
     </header>
   );

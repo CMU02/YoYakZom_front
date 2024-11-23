@@ -1,12 +1,17 @@
 /* 카드 컨테이너 */
 .cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 25vh;
+}
+
+.cards-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 한 행에 4개의 카드 */
-  gap: 3vw; /* 카드 간격 비율 */
-  width: 100%;
-  max-width: 80%; /* 최대 너비 80% */
-  margin: 4vh auto; /* 상하 여백을 비율로 설정 */
-  padding: 2vw; /* 내부 여백 비율 */
+  grid-template-columns: repeat(3, 1fr); /* 한 행에 4개의 카드 */
+  gap: 2vh; /* 카드 간격 비율 */
+  width: 150vh;
 }
 
 /* 카드 스타일 */

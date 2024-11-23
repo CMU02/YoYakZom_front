@@ -1,9 +1,9 @@
 import '../styles/summary-header.css';
 
-export default function SummaryHeader({summary, create_at, view_count}) {
+export default function SummaryHeader({ summary, create_at, view_count, onBackClick }) {
     return (
         <div className="summary-header">
-            <div className='summary-back'>
+            <div className='summary-back' onClick={onBackClick}>
                 <img src="/icons/left_arrow.svg" alt="뒤로가기" />
             </div>
             <div className="summary-title">
@@ -22,5 +22,5 @@ export default function SummaryHeader({summary, create_at, view_count}) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
