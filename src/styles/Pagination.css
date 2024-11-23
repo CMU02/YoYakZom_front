@@ -27,3 +27,9 @@
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+/* 현재 선택된 페이지 */
+.pagination-button.active {
+    background-color: #6A6A68;
+    font-weight: bold;
+}

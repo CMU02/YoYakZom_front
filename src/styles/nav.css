@@ -1,6 +1,5 @@
 .nav-container {
     display: flex;
-    overflow-x: auto; /* 수평 스크롤 */
     gap: 1.5rem;
     position: relative;
     align-items: center;

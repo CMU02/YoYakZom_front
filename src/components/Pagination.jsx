@@ -8,14 +8,16 @@ function Pagination({ total, pageSize, currentPage, onPageChange }) {
   };
 
   return (
-    <div className="pagination">
+    <div className="pagination-container"> 
       <button
+        className={`pagination-button ${currentPage === 1 ? 'disabled' : ''}`} 
         disabled={currentPage === 1}
         onClick={() => handlePageClick(1)}
       >
         처음
       </button>
       <button
+        className={`pagination-button ${currentPage === 1 ? 'disabled' : ''}`} 
         disabled={currentPage === 1}
         onClick={() => handlePageClick(currentPage - 1)}
       >
@@ -24,19 +26,21 @@ function Pagination({ total, pageSize, currentPage, onPageChange }) {
       {[...Array(totalPages)].map((_, index) => (
         <button
           key={index}
+          className={`pagination-button ${currentPage === index + 1 ? 'active' : ''}`}
           onClick={() => handlePageClick(index + 1)}
-          className={currentPage === index + 1 ? 'active' : ''}
         >
           {index + 1}
         </button>
       ))}
       <button
+        className={`pagination-button ${currentPage === totalPages ? 'disabled' : ''}`} 
         disabled={currentPage === totalPages}
         onClick={() => handlePageClick(currentPage + 1)}
       >
         다음
       </button>
       <button
+        className={`pagination-button ${currentPage === totalPages ? 'disabled' : ''}`} 
         disabled={currentPage === totalPages}
         onClick={() => handlePageClick(totalPages)}
       >
