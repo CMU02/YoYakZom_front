@@ -4,12 +4,13 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 25vh;
+  top: 15vh;
+  margin-bottom: 12rem;
 }
 
 .cards-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 한 행에 4개의 카드 */
+  grid-template-columns: repeat(3, 1fr); /* 한 행에 3개의 카드 */
   gap: 2vh; /* 카드 간격 비율 */
   width: 150vh;
 }
@@ -50,17 +51,6 @@
   text-overflow: ellipsis;
 }
 
-.card-original-text {
-  font-size: 0.8rem;
-  color: #666;
-  margin-top: 3vh;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* 텍스트 줄 제한 */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 /* 카드 푸터 */
 .card-footer {
   margin-top: 10%;
@@ -68,11 +58,28 @@
   justify-content: space-between;
   font-size: 0.8rem;
   color: #888;
+  align-items: center;
 }
 
-/* 카드 뷰 */
-.card-views {
-  margin-left: 1vw;
+/* 카드 메타 */
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  font-size: 1rem;
+  align-items: center;
+}
+
+/* 카드 날짜와 조회수 */
+.card-date, .card-views {
+  display: flex;
+  align-items: center;
+}
+
+.card-icon {
+  width: 1.5rem;  /* 아이콘 크기 */
+  height: 1.5rem;
+  margin-right: 0.5rem;  /* 아이콘과 텍스트 사이 간격 */
 }
 
 /* 카드 버튼 */

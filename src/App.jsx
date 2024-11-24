@@ -14,7 +14,7 @@ function App() {
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCard, setSelectedCard] = useState(null);  // 선택된 카드 상태 추가
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);  
   const pageSize = 12;  
@@ -100,11 +100,11 @@ function App() {
   };
 
   const handleMoreClick = (card) => {
-    setSelectedCard(card);  // 카드 클릭 시 선택된 카드 상태 설정
+    setSelectedCard(card);
   };
 
   const handleBackClick = () => {
-    setSelectedCard(null);  // 상세 페이지에서 뒤로 가기 클릭 시 선택된 카드 초기화
+    setSelectedCard(null);
   };
 
   if (error) {
@@ -112,39 +112,41 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="app-container">
       <Header
         searchQuery={searchQuery}
         handleSearchChange={handleSearchChange}
         onSearch={handleSearch}
       />
-
+  
       <Categories categories={categories} onCategoryClick={handleCategoryClick} />
-      
-      {/* 선택된 카드가 있으면 Summary를 표시 */}
-      {selectedCard ? (
-        <Summary
+  
+      <div className="cards-container">
+        {selectedCard ? (
+          <Summary
           id={selectedCard.id}
           summary={selectedCard.summary}
-          original_text={selectedCard.originalText}
-          create_at={selectedCard.createAt}
-          view_count={selectedCard.viewCount}
-          onBackClick={handleBackClick}  // 뒤로 가기 버튼 전달
+          originalText={selectedCard.original_text} 
+          createdAt={selectedCard.created_at} 
+          viewCount={selectedCard.view_count} 
+          onBackClick={handleBackClick}
         />
-      ) : (
-        <div>
-          <Cards items={getCurrentPageCards()} onMoreClick={handleMoreClick} />  {/* onMoreClick 전달 */}
-        </div>
-      )}
-
-      <Pagination
-        total={totalCards}
-        pageSize={pageSize}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-      />
+        
+        ) : (
+          <Cards items={getCurrentPageCards()} onMoreClick={handleMoreClick} />
+        )}
+      </div>
+  
+      <footer>
+        <Pagination
+          total={totalCards}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      </footer>
     </div>
-  );
+  );  
 }
 
 export default App;

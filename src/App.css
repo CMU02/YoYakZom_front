@@ -14,4 +14,13 @@ html{
     background-position: center; 
 }
 
-  
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* 화면 전체 높이를 채움 */
+    width: 100%;       /* 화면 전체 너비를 채움 */
+    box-sizing: border-box;
+    padding: 0 20px;   /* 좌우 여백 설정 (필요 시 조정) */
+    overflow-x: hidden; /* 가로 스크롤 숨김 */
+    align-items: center;
+  }
