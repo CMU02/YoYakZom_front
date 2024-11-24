@@ -13,19 +13,21 @@ export default function Cards({ items, onMoreClick }) {
   };
 
   return (
-    <div className="cards-container">
-      <div className="cards-list">
-        {items.map((item, index) => (
-          <Card
-            key={index}
-            category={item.category}
-            summary={item.summary}
-            originalText={item.original_text}
-            createdAt={formatDate(item.created_at)} // 날짜 포맷 적용
-            viewCount={item.view_count}
-            onMoreClick={() => onMoreClick(item)}
-          />
-        ))}
+    <div className='ratioHolder'>
+      <div className="cards-container">
+        <div className="cards-list">
+          {items.map((item, index) => (
+            <Card
+              key={index}
+              category={item.category}
+              summary={item.summary}
+              originalText={item.original_text}
+              createdAt={formatDate(item.created_at)} // 날짜 포맷 적용
+              viewCount={item.view_count}
+              onMoreClick={() => onMoreClick(item)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
