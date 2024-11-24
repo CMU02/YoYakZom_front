@@ -3,13 +3,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: absolute;
   top: 25vh;
+}
+
+/* 비율 유지를 위한 홀더 */
+.ratioHolder {
+  width: 150vh;
+  height: 110vh;
+  position: absolute;
 }
 
 .cards-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 한 행에 4개의 카드 */
+  grid-template-columns: repeat(4, 1fr); /* 한 행에 4개의 카드 */
   gap: 2vh; /* 카드 간격 비율 */
   width: 150vh;
 }

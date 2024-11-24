@@ -6,7 +6,7 @@
     justify-content: space-between;
     position: relative;
     top: 0; /* 페이지 상단에 정확히 배치 */
-    margin-top: 75vh;
+    margin-top: 75vh; /* 현재 summary로 넘어갔을때 헤더가 과도하게 내려오는 이유 */
 }
 
 /* 제목 스타일 */

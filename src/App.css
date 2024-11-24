@@ -14,4 +14,18 @@ html{
     background-position: center; 
 }
 
-  
+.searchBar{
+    padding: 2vh;
+}
+
+.categorySelection{
+    padding: 2vh;
+}
+
+.cardSelection{
+    padding: 2vh;
+}
+
+.pageSelection{
+    padding: 2vh;
+}

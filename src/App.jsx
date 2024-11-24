@@ -112,38 +112,41 @@ function App() {
   }
 
   return (
-    <div>
-      <Header
-        searchQuery={searchQuery}
-        handleSearchChange={handleSearchChange}
-        onSearch={handleSearch}
-      />
-
-      <Categories categories={categories} onCategoryClick={handleCategoryClick} />
-      
-      {/* 선택된 카드가 있으면 Summary를 표시 */}
-      {selectedCard ? (
-        <Summary
-          id={selectedCard.id}
-          summary={selectedCard.summary}
-          original_text={selectedCard.originalText}
-          create_at={selectedCard.createAt}
-          view_count={selectedCard.viewCount}
-          onBackClick={handleBackClick}  // 뒤로 가기 버튼 전달
-        />
-      ) : (
-        <div>
-          <Cards items={getCurrentPageCards()} onMoreClick={handleMoreClick} />  {/* onMoreClick 전달 */}
+      <div>
+        <div className='searchBar'>
+          <Header
+              searchQuery={searchQuery}
+              handleSearchChange={handleSearchChange}
+              onSearch={handleSearch}
+          />
         </div>
-      )}
-
-      <Pagination
-        total={totalCards}
-        pageSize={pageSize}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-      />
-    </div>
+        <div className='categorySelection'>
+          <Categories categories={categories} onCategoryClick={handleCategoryClick} />
+        </div>
+        <div className='cardSelection'>
+            {selectedCard ? (
+                <Summary
+                    id={selectedCard.id}
+                    summary={selectedCard.summary}
+                    original_text={selectedCard.originalText}
+                    create_at={selectedCard.createAt}
+                    view_count={selectedCard.viewCount}
+                    onBackClick={handleBackClick}
+                />
+            ) : (
+                    <Cards items={getCurrentPageCards()} onMoreClick={handleMoreClick} />
+            )}
+            
+        </div>
+        <div className='pageSelection'>
+              <Pagination
+                  total={totalCards}
+                  pageSize={pageSize}
+                  currentPage={currentPage}
+                  onPageChange={handlePageChange}
+              />
+        </div>
+      </div>
   );
 }
 
