@@ -1,7 +1,7 @@
 import '../styles/card.css';
 import PropTypes from 'prop-types';
 
-export default function Card({id, category, summary, original_text, created_at, view_count}) {
+export default function Card({id, category, summary, created_at, view_count, handleOriginalTextClick}) {
     return (
         <div className="card-container" key={id}>
             <div className="card-category">
@@ -23,8 +23,11 @@ export default function Card({id, category, summary, original_text, created_at, 
                     <img src="/icons/watch.svg" alt="조회수" />
                     <p>{view_count}</p>
                 </div>
-                <div className="card-more">
-                    <p>원본 보기</p>
+                <div 
+                    className="card-more"
+                    onClick={() => handleOriginalTextClick(id)}
+                >
+                    <p>원문 보기</p>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import "../styles/cards.css";
 
-export default function Cards({summaryList}) {
+export default function Cards({summaryList, handleOriginalTextClick}) {
     return (
         <>
             <div className='cards-container'>
@@ -11,11 +11,13 @@ export default function Cards({summaryList}) {
                         summaryList.map(({id, category, summary, original_text, created_at, view_count}) => {
                             return <Card 
                                 key={id} 
+                                id={id}
                                 category={category}
                                 summary={summary}
                                 original_text={original_text}
                                 created_at={created_at}
-                                view_count={view_count} 
+                                view_count={view_count}
+                                handleOriginalTextClick={handleOriginalTextClick} 
                             />
                         })
                     }

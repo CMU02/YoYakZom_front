@@ -8,6 +8,8 @@ import Cards from './components/Cards';
 import Summary from './components/Summary';
 import Pagination from './components/Pagination';
 
+import './styles/summary.css';
+
 function App() {
   const categoriesGroupUrl = "https://server.yoyakzom.com/summary/category-group"; // 카테고리 그룹 API url
   const summaryListUrl = "https://server.yoyakzom.com/summary"; // 요약글 목록 API url
@@ -19,6 +21,9 @@ function App() {
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const itemsPerPage = 9; // 페이지당 아이템 수
+
+  const [selectedSummary, setSelectedSummary] = useState(false); // 선택된 요약글
+  const [selectedSummaryData, setSelectedSummaryData] = useState([]); // 선택된 요약글의 id
 
   // 선택된 카테고리에 따라 요약글 목록을 필터링
   const filteredSummaryList = selectedCategory === 'ALL'
@@ -37,6 +42,24 @@ function App() {
     setCurrentPage(page);
   }
 
+  // 카테고리 클릭 이벤트 핸들러
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(selectedCategory === category ? 'ALL' : category);
+  }
+
+  // 원문 보기 버튼 클릭 이벤트 핸들러
+  const handleOriginalTextClick = async(summaryId) => {
+    const response = await axios.get(`${summaryListUrl}/${summaryId}`);
+
+    setSelectedSummaryData(response.data);
+    setSelectedSummary(true);
+  }
+
+  // 원문 뒤로가기 버튼 클릭 이벤트 핸들러
+  const handleBackClick = () => {
+    setSelectedSummary(false);
+  }
+
   useEffect(() => {
     const getCategories = async() => {
       const response = await axios.get(categoriesGroupUrl);
@@ -52,10 +75,6 @@ function App() {
     getCategories();
     getSummaryList();
   }, [])
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(selectedCategory === category ? 'ALL' : category);
-  }
 
   return (
     <>
@@ -81,8 +100,23 @@ function App() {
         </div>
       </header>
       <Categories categories={categories} handleCategoryClick={handleCategoryClick}/>
-      <Cards summaryList={paginatedList}/>
-      {/* <Summary /> */}
+      <Cards 
+        summaryList={paginatedList}
+        handleOriginalTextClick={handleOriginalTextClick}
+      />
+
+      {
+        selectedSummary ? 
+        <Summary 
+          selectedSummaryData={selectedSummaryData} 
+          handleBackClick={handleBackClick}
+        /> : 
+        <Cards 
+          summaryList={paginatedList}
+          handleOriginalTextClick={handleOriginalTextClick}
+        />
+      }
+
       <Pagination 
         currentPage={currentPage} 
         pageSize={pageSize} 

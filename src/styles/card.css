@@ -8,7 +8,7 @@
     background: #F0F0EF;
     box-shadow: 8.5px 8.5px 5px 0px rgba(0, 0, 0, 0.25);
 
-    transition: 0.25s ease-in-out;
+    transition: 0.5s ease-in-out;
 }
 
 .card-category {
@@ -90,6 +90,8 @@
     background: #4A4A48;
     color: #fff;
     font-size: 1.5vh;
+
+    transition: 0.5s ease-in-out;
 }
 
 .card-info > .card-more:hover {
