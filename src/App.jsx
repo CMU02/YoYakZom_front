@@ -1,35 +1,150 @@
+import React, { useEffect, useState } from 'react';
+import Categories from "./components/Categories";
+import Cards from "./components/Cards";
+import Header from "./components/Header";
+import Pagination from './components/Pagination';  
+import Summary from './components/Summary';  
 import './App.css';
 import './styles/global.css';
-import './styles/Header.css'
 
 function App() {
+  const [categories, setCategories] = useState([]);
+  const [allCardsData, setAllCardsData] = useState([]);
+  const [filteredCardsData, setFilteredCardsData] = useState([]);
+  const [error, setError] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCard, setSelectedCard] = useState(null);  // 선택된 카드 상태 추가
+
+  const [currentPage, setCurrentPage] = useState(1);  
+  const pageSize = 12;  
+  const [totalCards, setTotalCards] = useState(0);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('https://server.yoyakzom.com/summary/category-group');
+        if (!response.ok) {
+          throw new Error('카테고리를 가져오지 못했습니다.');
+        }
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    const fetchAllCards = async () => {
+      try {
+        const response = await fetch('https://server.yoyakzom.com/summary');
+        if (!response.ok) {
+          throw new Error('카드 데이터를 가져오지 못했습니다.');
+        }
+        const data = await response.json();
+        setAllCardsData(data);
+        setFilteredCardsData(data); 
+        setTotalCards(data.length); 
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchCategories();
+    fetchAllCards();
+  }, []);
+
+  const handleCategoryClick = async (category) => {
+    try {
+      setSelectedCategory(category);
+      const response = await fetch(`https://server.yoyakzom.com/summary/category?category=${category}`);
+      if (!response.ok) {
+        throw new Error('카테고리 데이터를 가져오지 못했습니다.');
+      }
+      const data = await response.json();
+      setFilteredCardsData(data);
+      setTotalCards(data.length);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    filterCards(e.target.value);
+  };
+
+  const filterCards = (query) => {
+    const filtered = allCardsData.filter((card) => {
+      const inSummary = card.summary.toLowerCase().includes(query.toLowerCase());
+      const inSelectedCategory = selectedCategory
+        ? card.category === selectedCategory
+        : true;
+      return inSummary && inSelectedCategory;
+    });
+    setFilteredCardsData(filtered);
+    setTotalCards(filtered.length);
+  };
+
+  const handleSearch = (query) => {
+    filterCards(query);
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const getCurrentPageCards = () => {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return filteredCardsData.slice(startIndex, endIndex);
+  };
+
+  const handleMoreClick = (card) => {
+    setSelectedCard(card);  // 카드 클릭 시 선택된 카드 상태 설정
+  };
+
+  const handleBackClick = () => {
+    setSelectedCard(null);  // 상세 페이지에서 뒤로 가기 클릭 시 선택된 카드 초기화
+  };
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
-    <>
-      <header>
-        <div className='title'>
-          <h1>요약좀</h1>
+    <div>
+      <Header
+        searchQuery={searchQuery}
+        handleSearchChange={handleSearchChange}
+        onSearch={handleSearch}
+      />
+
+      <Categories categories={categories} onCategoryClick={handleCategoryClick} />
+      
+      {/* 선택된 카드가 있으면 Summary를 표시 */}
+      {selectedCard ? (
+        <Summary
+          id={selectedCard.id}
+          summary={selectedCard.summary}
+          original_text={selectedCard.originalText}
+          create_at={selectedCard.createAt}
+          view_count={selectedCard.viewCount}
+          onBackClick={handleBackClick}  // 뒤로 가기 버튼 전달
+        />
+      ) : (
+        <div>
+          <Cards items={getCurrentPageCards()} onMoreClick={handleMoreClick} />  {/* onMoreClick 전달 */}
         </div>
-        <div className='search-container'>
-          <div className='search-title'>
-            <p>검색하기</p>
-          </div>
-          <div className='search-wrapper'>
-            <div className='search-bar'>
-              <input type="text" placeholder="검색하기"/>
-            </div>
-            <div className='search-btn'>
-              <button><img src='/icons/search_icon.svg' alt='검색버튼'/></button>
-            </div>
-          </div>
-        </div>
-        <div className='info'>
-          <p>정보 과부하 속에서 핵심 내용을 빠르게 파악하기 어려운 시대입니다. &apos;3줄요약&apos; 서비스는 이러한 문제를 해결하기 위해 설계된 솔루션으로, 방대한 글이나 자료를 3줄로 간략하게 요약하여 사용자들이 중요한 정보를 놓치지 않고 효율적으로 습득할 수 있도록 돕습니다.</p> 
-        </div>
-      </header>
-    </>
+      )}
+
+      <Pagination
+        total={totalCards}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
+    </div>
   );
 }
 
 export default App;
-
-
