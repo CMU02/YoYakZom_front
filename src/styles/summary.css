@@ -13,4 +13,5 @@
     width: 150vh;
     height: 110vh;
     position: relative;
+    left: 10vh /* 좌측으로 쏠리는 문제 해결 */
 }

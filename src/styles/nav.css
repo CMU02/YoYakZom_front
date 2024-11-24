@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     top: 19vh;
+    z-index: 1; /* cardlist의 ratioHolder가 카테고리를 가려서 클릭이 안되어 placeHolder앞으로 이동 */
 }
 
 .nav-item {

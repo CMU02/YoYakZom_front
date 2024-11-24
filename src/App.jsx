@@ -120,10 +120,10 @@ function App() {
               onSearch={handleSearch}
           />
         </div>
-        <div className='categorySelection'>
-          <Categories categories={categories} onCategoryClick={handleCategoryClick} />
-        </div>
+        
         <div className='cardSelection'>
+          <Categories categories={categories} onCategoryClick={handleCategoryClick} />
+
             {selectedCard ? (
                 <Summary
                     id={selectedCard.id}
