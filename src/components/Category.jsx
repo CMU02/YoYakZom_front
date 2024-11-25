@@ -15,5 +15,5 @@ export default function Category({ category, count, handleCategoryClick }) {
 
 Category.propTypes = {
     category: PropTypes.string.isRequired,
-    count: PropTypes.number.isRequired,
+    count: PropTypes.string.isRequired,
 }

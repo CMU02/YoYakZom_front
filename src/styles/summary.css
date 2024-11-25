@@ -1,10 +1,15 @@
 .summary-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 13vh;
+}
+
+.summary {
     background-color: white;
     width: 135.3vh;
-    height: 79vh;
-    position: relative;
-    top: 23.5vh;
-    left: 32.5vh;
+    height: 92.5vh;
     border-radius: 15px;
     border: 1px solid #000;
 }

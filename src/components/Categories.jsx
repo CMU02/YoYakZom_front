@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import Category from './Category';
 import '../styles/nav.css';
 
-export default function Categories({ categories, handleCategoryClick }) {
+export default function Categories({ categories, handleCategoryClick, selectedSummary }) {
     return (
         <>
-            <nav className='nav-container'>
+            <nav className={!selectedSummary ? 'nav-container' : 'nav-container-summary-active'}>
                 {
                     categories.map(({category, count}) => {
                         return (
-                            <Category 
+                            <Category
                                 category={category} 
                                 count={count} 
                                 key={category}
@@ -25,6 +25,8 @@ export default function Categories({ categories, handleCategoryClick }) {
 
 Categories.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        category: PropTypes.string.isRequired,
+        count: PropTypes.string.isRequired,
     })).isRequired,
+    selectedSummary: PropTypes.bool.isRequired,
 };       

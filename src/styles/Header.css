@@ -11,6 +11,8 @@ header {
     top: -5vh;
     width: 5vh;
     height: 2.5vh;
+
+    transition: 0.5s ease-in-out;
 }
 
 .title > h1 {
@@ -45,21 +47,61 @@ header {
     flex-direction: row;
 }
 
-.search-container > .search-field > .search-bar > input {
+/* 검색 하지 않을 경우 */
+.search-container > .search-field > .search-bar {
     width: 49vh;
     height: 6.5vh;
     flex-shrink: 0;
+    display: flex;
+    background: white;
     border-radius: 25px 0px 0px 25px;
-    border: none;
-    background: #F0F0EF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding-left: 2vh;
+}
 
+.search-container > .search-field > .search-bar > input {
+    width: 49vh;
+    border: none;
+    padding-left: 2vh;
+    border-radius: 25px 0px 0px 25px;
     font-size: 16px;
 }
 
 .search-container > .search-field > .search-bar > input:focus {
     outline: none;
+}
+
+/* 검색할 경우 */
+.search-container > .search-field > .search-bar-active {
+    width: 49vh;
+    height: 6.5vh;
+    flex-shrink: 0;
+    display: flex;
+    background: white;
+    border-radius: 25px 0px 0px 25px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.search-container > .search-field > .search-bar-active > input {
+    width: 45vh;
+    border: none;
+    padding-left: 2vh;
+    border-radius: 25px 0px 0px 25px;
+    font-size: 16px;
+}
+
+.search-container > .search-field > .search-bar-active > input:focus {
+    outline: none;
+}
+
+.search-close-btn {
+    width: 5vh;
+    height: 6.5vh;
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .search-container > .search-field > .search-btn {
@@ -75,6 +117,13 @@ header {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+
+    transition: 0.5s ease-in-out;
+}
+
+.search-container > .search-field > .search-btn> img {
+    width: 5vh;
+    height: 5vh;
 }
 
 .search-container > .search-btn:hover {
@@ -84,8 +133,24 @@ header {
 .info > p {
     transform: rotate(90deg);
     position: relative;
-    top: 10vh;
+    top: 13.5vh;
     left: 6.5vh;
-    width: 30vh;
+    width: 35vh;
     line-height: 2.5vh;
+
+    transition: 0.5s ease-in-out;
+}
+
+.add-extension {
+    width: 35vh;
+    height: 2.5vh;
+    position: relative;
+    top: 8.5vh;
+    right: 59vh;
+
+    transition: 0.5s ease-in-out;
+}
+
+.add-extension > a {
+    text-decoration: none;
 }

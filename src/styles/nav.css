@@ -6,6 +6,20 @@
     align-items: center;
     justify-content: center;
     top: 19vh;
+
+    transition: 0.5s ease-in-out;   
+}
+
+.nav-container-summary-active {
+    display: flex;
+    -webkit-overflow-scrolling: touch;
+    gap: 2vh;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    top: 10vh;
+
+    transition: 0.25s ease-in-out;
 }
 
 .nav-item {

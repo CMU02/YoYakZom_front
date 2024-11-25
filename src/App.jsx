@@ -1,21 +1,25 @@
 import { useState, useEffect } from 'react';
-import './App.css';
+import './styles/App.css';
 import './styles/global.css';
-import './styles/Header.css'
 import axios from 'axios';
+
 import Categories from './components/Categories';
 import Cards from './components/Cards';
 import Summary from './components/Summary';
 import Pagination from './components/Pagination';
+import Header from './components/Header';
+import FooterInfo from './components/Footer';
 
-import './styles/summary.css';
+const categoriesGroupUrl = "https://server.yoyakzom.com/summary/category-group"; // 카테고리 그룹 API url
+const summaryListUrl = "https://server.yoyakzom.com/summary"; // 요약글 목록 API url
 
-function App() {
-  const categoriesGroupUrl = "https://server.yoyakzom.com/summary/category-group"; // 카테고리 그룹 API url
-  const summaryListUrl = "https://server.yoyakzom.com/summary"; // 요약글 목록 API url
-
+export default function App() {
   const [categories, setCategories] = useState([]); // 그룹별 카테고리 목록
   const [summaryList, setSummaryList] = useState([]); // 요약글 목록
+
+  const [searchQuery, setSearchQuery] = useState(''); // 검색어
+  const [searchClose, setSearchClose] = useState(false); // 검색어 초기화 버튼
+  const [searchFilterSummaryList, setSearchFilterSummaryList] = useState([]); // 검색 필터링된 요약글 목록
 
   const [selectedCategory, setSelectedCategory] = useState('ALL'); // 선택된 카테고리
 
@@ -24,6 +28,24 @@ function App() {
 
   const [selectedSummary, setSelectedSummary] = useState(false); // 선택된 요약글
   const [selectedSummaryData, setSelectedSummaryData] = useState([]); // 선택된 요약글의 id
+
+  // 검색어를 통해 요약글 목록을 필터링
+  const searchSummaryList = (query) => {
+    const filteredSummaryList = summaryList.filter((summary) => {
+      // 검색어가 요약에 포함되어 있는지 확인
+      const inSummary = summary.summary
+        .toLowerCase()
+        .includes(query.toLowerCase().trim());
+
+      // 카테고리가 선택된 경우, 해당 카테고리에 맞는지 확인
+      const inSeledtedCategory = selectedCategory === 'ALL' || summary.category === selectedCategory;
+      return inSummary && inSeledtedCategory;
+    })
+
+    // 검색 필터링된 요약글 목록을 업데이트 및 검색어 닫기 버튼 활성화
+    setSearchFilterSummaryList(filteredSummaryList);
+    setSearchClose(true);
+  }
 
   // 선택된 카테고리에 따라 요약글 목록을 필터링
   const filteredSummaryList = selectedCategory === 'ALL'
@@ -61,11 +83,13 @@ function App() {
   }
 
   useEffect(() => {
+    // 카테고리 그룹 목록을 가져오는 비동기 함수
     const getCategories = async() => {
       const response = await axios.get(categoriesGroupUrl);
       setCategories(response.data);
     }
 
+    // 요약글 목록을 가져오는 비동기 함수
     const getSummaryList = async() => {
       const response  = await axios.get(summaryListUrl);
 
@@ -78,43 +102,32 @@ function App() {
 
   return (
     <>
-      <header>
-        <div className='title'>
-          <h1>요약좀</h1>
-        </div>
-        <div className='search-container'>
-          <div className='search-title'>
-            <p>검색하기</p>
-          </div>
-          <div className='search-field'>
-            <div className='search-bar'>
-              <input type="text" placeholder="검색하기"/>
-            </div>
-            <div className='search-btn'>
-              <img src='/icons/search_icon.svg' alt='검색버튼'/>
-            </div>
-          </div>
-        </div>
-        <div className='info'>
-          <p>정보 과부하 속에서 핵심 내용을 빠르게 파악하기 어려운 시대입니다. &apos;3줄요약&apos; 서비스는 이러한 문제를 해결하기 위해 설계된 솔루션으로, 방대한 글이나 자료를 3줄로 간략하게 요약하여 사용자들이 중요한 정보를 놓치지 않고 효율적으로 습득할 수 있도록 돕습니다.</p> 
-        </div>
-      </header>
-      <Categories categories={categories} handleCategoryClick={handleCategoryClick}/>
-      <Cards 
-        summaryList={paginatedList}
-        handleOriginalTextClick={handleOriginalTextClick}
+      <Header
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        searchSummaryList={searchSummaryList}
+        searchClose={searchClose}
+        setSearchClose={setSearchClose}
+      />
+
+      <Categories 
+        categories={categories} 
+        handleCategoryClick={handleCategoryClick}
+        selectedSummary={selectedSummary}
       />
 
       {
+        // 선택된 요약글이 있으면 Summary 컴포넌트를, 없으면 Cards 컴포넌트를 렌더링
         selectedSummary ? 
-        <Summary 
+        (<Summary 
           selectedSummaryData={selectedSummaryData} 
           handleBackClick={handleBackClick}
-        /> : 
-        <Cards 
-          summaryList={paginatedList}
+        />) : 
+        (<Cards
+          // 검색어가 있으면 검색 필터링된 요약글 목록을, 없으면 페이지네이션된 요약글 목록을 렌더링
+          summaryList={searchQuery ? searchFilterSummaryList : paginatedList}
           handleOriginalTextClick={handleOriginalTextClick}
-        />
+        />)
       }
 
       <Pagination 
@@ -122,10 +135,8 @@ function App() {
         pageSize={pageSize} 
         handlePageChange={handlePageChange}
       />
+
+      <FooterInfo />
     </>
   );
 }
-
-export default App;
-
-
