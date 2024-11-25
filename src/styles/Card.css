@@ -1,97 +1,100 @@
-/* 카드 컨테이너 */
-.cards-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  top: 15vh;
-  margin-bottom: 12rem;
+.card-container {
+    width: 55vh;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background: #F0F0EF;
+    box-shadow: 8.5px 8.5px 5px 0px rgba(0, 0, 0, 0.25);
+
+    transition: 0.5s ease-in-out;
 }
 
-.cards-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 한 행에 3개의 카드 */
-  gap: 2vh; /* 카드 간격 비율 */
-  width: 150vh;
+.card-category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8vh;
+    height: 3.5vh;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 2vh 2vh 0 2vh;
+    background-color: #fff;
 }
 
-/* 카드 스타일 */
-.card {
-  border: 1px solid #ddd;
-  border-radius: 0.5vw;
-  padding: 2vw;
-  background-color: #fff;
-  box-shadow: 0 0.5vh 1vw rgba(0, 0, 0, 0.1);
-  height: auto; /* 내용에 맞게 높이 자동 조정 */
-  min-height: 30vh; /* 최소 높이 설정 */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-}
-
-/* 카드 헤더 */
-.card-header {
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: #555;
-  margin-bottom: 1.5vh;
-}
-
-/* 카드 요약 */
 .card-summary {
-  font-size: 1rem;
-  color: #666;
-  margin-top: 1.5vh;
-  margin-bottom: 2vh;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* 텍스트 줄 제한 */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    margin: 1.5vh 2vh 0 2vh;
+    width: 50.5vh;
+    height: 17vh;
+    font-size: 1.75vh;
+    line-height: 2.75vh;
 }
 
-/* 카드 푸터 */
-.card-footer {
-  margin-top: 10%;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  color: #888;
-  align-items: center;
+.card-summary h4 {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
 }
 
-/* 카드 메타 */
-.card-meta {
-  display: flex;
-  justify-content: space-between;
-  width: 60%;
-  font-size: 1rem;
-  align-items: center;
+.card-hr {
+    margin: 0 2vh 0 2vh;
+    border: 1px solid #000;
 }
 
-/* 카드 날짜와 조회수 */
-.card-date, .card-views {
-  display: flex;
-  align-items: center;
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 1vh 2vh 1vh 2vh;
 }
 
-.card-icon {
-  width: 1.5rem;  /* 아이콘 크기 */
-  height: 1.5rem;
-  margin-right: 0.5rem;  /* 아이콘과 텍스트 사이 간격 */
+.card-info > .card-update_at {
+    display: flex;
+    font-size: 1.5vh;
+    width: 11.5vh;
+    align-items: center;
+    gap: 0.5vh;
+    max-width: 15vh;
 }
 
-/* 카드 버튼 */
-.card-button {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 0.8vh 1.5vw;
-  border-radius: 0.3vw;
-  cursor: pointer;
+.card-info > .card-update_at > img {
+    width: 2vh;
+    height: 2vh;
 }
 
-.card-button:hover {
-  background-color: #555;
+.card-info > .card-watch {
+    display: flex;
+    font-size: 1.5vh;
+    width: 5.5vh;
+    align-items: center;
+    gap: 0.5vh;
+    max-width: 15vh;
+}
+
+.card-info > .card-watch > img {
+    width: 2vh;
+    height: 2vh;
+}
+
+.card-info > .card-more {
+    border: 1px solid #000;
+    width: 7.5vh;
+    height: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5vh;
+    background: #4A4A48;
+    color: #fff;
+    font-size: 1.5vh;
+
+    transition: 0.5s ease-in-out;
+}
+
+.card-info > .card-more:hover {
+    cursor: pointer;
+    background: #000;
 }
