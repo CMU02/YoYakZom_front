@@ -28,7 +28,7 @@ function Header({ searchQuery, handleSearchChange, onSearch }) {
             />
           </div>
           <button className="search-btn" onClick={() => onSearch(searchQuery)}>
-            <img src="Search-icon.png" alt="Search" className="search-icon" />
+            <img src="../images/search_icon.svg" alt="Search" className="search-icon" />
           </button>
         </div>
       </div>

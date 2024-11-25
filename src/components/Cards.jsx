@@ -20,10 +20,10 @@ export default function Cards({ items, onMoreClick }) {
             key={index}
             category={item.category}
             summary={item.summary}
-            originalText={item.original_text}
-            createdAt={formatDate(item.created_at)} // 날짜 포맷 적용
-            viewCount={item.view_count}
-            onMoreClick={() => onMoreClick(item)}
+            original_text={item.original_text}  
+            created_at={formatDate(item.created_at)} 
+            view_count={item.view_count}  
+            onMoreClick={onMoreClick} 
           />
         ))}
       </div>
