@@ -1,4 +1,4 @@
-import '../styles/card.css';
+import '../styles/Card.css';
 import PropTypes from 'prop-types';
 
 export default function Card({id, category, summary, created_at, view_count, handleOriginalTextClick}) {
