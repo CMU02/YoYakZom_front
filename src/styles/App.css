@@ -1,11 +1,26 @@
 @font-face {
-  font-family: 'Dokrip';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff');
-  font-weight: normal; 
-  font-style: normal; 
+    font-family: 'Dokrip';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
-body {
-  font-family: Dokrip;
-  background-image: url('/images/background.webp');
+html{
+    font-family: 'Dokrip';
+    margin: 0;
+    padding: 0;
+    background-image: url('/public/images/background.webp'); 
+    background-size: 100% auto; /* 가로는 100%, 세로는 자동 크기 조절 */
+    background-position: center; 
 }
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* 화면 전체 높이를 채움 */
+    width: 100%;       /* 화면 전체 너비를 채움 */
+    box-sizing: border-box;
+    padding: 0 20px;   /* 좌우 여백 설정 (필요 시 조정) */
+    overflow-x: hidden; /* 가로 스크롤 숨김 */
+    align-items: center;
+  }
