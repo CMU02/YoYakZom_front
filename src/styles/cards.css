@@ -1,0 +1,13 @@
+.cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 25vh;
+}
+
+.cards-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5vh;
+}

@@ -1,5 +1,15 @@
 .summary-content {
     margin: 2vh 2vh 0 2vh;
-    font-size: 1.5vh;
-    line-height: 2.5vh;
+    font-size: 1.75vh;
+    line-height: 3.5vh;
+
+    width: 131vh;
+    height: 52vh;
+    overflow: scroll;
+    position: relative;
+    top: 5vh;
+}
+
+.summary-content::-webkit-scrollbar {
+    display: none; /* 스크롤바 숨김 */
 }

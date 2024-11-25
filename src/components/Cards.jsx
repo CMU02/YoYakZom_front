@@ -1,32 +1,39 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
-import '../styles/Card.css';
+import "../styles/cards.css";
 
-export default function Cards({ items, onMoreClick }) {
-  // 날짜 포맷 함수
-  const formatDate = (date) => {
-    const d = new Date(date);
-    const year = d.getFullYear();
-    const month = String(d.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더해줌
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
+export default function Cards({summaryList, handleOriginalTextClick}) {
+    return (
+        <>
+            <div className='cards-container'>
+                <div className='cards-list'>
+                    {
+                        summaryList.map(({id, category, summary, original_text, created_at, view_count}) => {
+                            return <Card 
+                                key={id} 
+                                id={id}
+                                category={category}
+                                summary={summary}
+                                original_text={original_text}
+                                created_at={created_at}
+                                view_count={view_count}
+                                handleOriginalTextClick={handleOriginalTextClick} 
+                            />
+                        })
+                    }
+                </div>
+            </div>
+        </>
+    );
+}
 
-  return (
-    <div className="cards-container">
-      <div className="cards-list">
-        {items.map((item, index) => (
-          <Card
-            key={index}
-            category={item.category}
-            summary={item.summary}
-            original_text={item.original_text}  
-            created_at={formatDate(item.created_at)} 
-            view_count={item.view_count}  
-            onMoreClick={onMoreClick} 
-          />
-        ))}
-      </div>
-    </div>
-  );
+Cards.propTypes = {
+    summaryList: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        category: PropTypes.string.isRequired,
+        summary: PropTypes.string.isRequired,
+        original_text: PropTypes.string.isRequired,
+        created_at: PropTypes.string.isRequired,
+        view_count: PropTypes.number.isRequired,
+    })).isRequired,
 }

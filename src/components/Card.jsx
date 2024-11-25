@@ -1,38 +1,44 @@
-import React from 'react';
-import '../styles/Card.css';
+import '../styles/card.css';
+import PropTypes from 'prop-types';
 
-const truncateText = (text, maxLength = 100) => {
-  if (text.length > maxLength) {
-    return text.substring(0, maxLength) + '...';
-  }
-  return text;
-};
+export default function Card({id, category, summary, created_at, view_count, handleOriginalTextClick}) {
+    return (
+        <div className="card-container" key={id}>
+            <div className="card-category">
+                <p>{category}</p>
+            </div>
 
-export default function Card({ id, category, summary, original_text, created_at, view_count, onMoreClick }) {
-  return (
-    <div className="card">
-      <div className="card-header">
-        <span className="card-category">{category}</span>
-      </div>
-      <div className="card-content">
-        <h3 className="card-summary">{truncateText(summary)}</h3>
-        <hr className="card-divider" />
-      </div>
-      <div className="card-footer">
-        <div className="card-meta">
-          <span className="card-date">
-            <img src="/public/icons/calendar.svg" alt="Calendar" className="card-icon" />
-            {created_at}
-          </span>
-          <span className="card-views">
-            <img src="/public/icons/watch.svg" alt="Watch" className="card-icon" />
-            {view_count}
-          </span>
+            <div className="card-summary">
+                <h4>{summary}</h4>
+            </div>
+
+            <hr className='card-hr' />
+
+            <div className="card-info">
+                <div className="card-update_at">
+                    <img src="/icons/calendar.svg" alt="생성날짜" />
+                    <p>{created_at.substring(0, 10)}</p>
+                </div>
+                <div className="card-watch">
+                    <img src="/icons/watch.svg" alt="조회수" />
+                    <p>{view_count}</p>
+                </div>
+                <div 
+                    className="card-more"
+                    onClick={() => handleOriginalTextClick(id)}
+                >
+                    <p>원문 보기</p>
+                </div>
+            </div>
         </div>
-        <button className="card-button" onClick={() => onMoreClick({ id, summary, created_at, view_count, category, original_text })}>
-          More
-        </button>
-      </div>
-    </div>
-  );
+    )
+}
+
+Card.propTypes = {
+    id: PropTypes.number.isRequired,
+    category: PropTypes.string.isRequired,
+    summary: PropTypes.string.isRequired,
+    original_text: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    view_count: PropTypes.number.isRequired,
 }

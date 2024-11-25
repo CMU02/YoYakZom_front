@@ -1,152 +1,142 @@
-import React, { useEffect, useState } from 'react';
-import Categories from "./components/Categories";
-import Cards from "./components/Cards";
-import Header from "./components/Header";
-import Pagination from './components/Pagination';  
-import Summary from './components/Summary';  
-import './App.css';
+import { useState, useEffect } from 'react';
+import './styles/App.css';
 import './styles/global.css';
+import axios from 'axios';
 
-function App() {
-  const [categories, setCategories] = useState([]);
-  const [allCardsData, setAllCardsData] = useState([]);
-  const [filteredCardsData, setFilteredCardsData] = useState([]);
-  const [error, setError] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCard, setSelectedCard] = useState(null);
+import Categories from './components/Categories';
+import Cards from './components/Cards';
+import Summary from './components/Summary';
+import Pagination from './components/Pagination';
+import Header from './components/Header';
+import FooterInfo from './components/Footer';
 
-  const [currentPage, setCurrentPage] = useState(1);  
-  const pageSize = 12;  
-  const [totalCards, setTotalCards] = useState(0);
+const categoriesGroupUrl = "https://server.yoyakzom.com/summary/category-group"; // 카테고리 그룹 API url
+const summaryListUrl = "https://server.yoyakzom.com/summary"; // 요약글 목록 API url
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch('https://server.yoyakzom.com/summary/category-group');
-        if (!response.ok) {
-          throw new Error('카테고리를 가져오지 못했습니다.');
-        }
-        const data = await response.json();
-        setCategories(data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
+export default function App() {
+  const [categories, setCategories] = useState([]); // 그룹별 카테고리 목록
+  const [summaryList, setSummaryList] = useState([]); // 요약글 목록
 
-    const fetchAllCards = async () => {
-      try {
-        const response = await fetch('https://server.yoyakzom.com/summary');
-        if (!response.ok) {
-          throw new Error('카드 데이터를 가져오지 못했습니다.');
-        }
-        const data = await response.json();
-        setAllCardsData(data);
-        setFilteredCardsData(data); 
-        setTotalCards(data.length); 
-      } catch (error) {
-        setError(error.message);
-      }
-    };
+  const [searchQuery, setSearchQuery] = useState(''); // 검색어
+  const [searchClose, setSearchClose] = useState(false); // 검색어 초기화 버튼
+  const [searchFilterSummaryList, setSearchFilterSummaryList] = useState([]); // 검색 필터링된 요약글 목록
 
-    fetchCategories();
-    fetchAllCards();
-  }, []);
+  const [selectedCategory, setSelectedCategory] = useState('ALL'); // 선택된 카테고리
 
-  const handleCategoryClick = async (category) => {
-    try {
-      setSelectedCategory(category);
-      const response = await fetch(`https://server.yoyakzom.com/summary/category?category=${category}`);
-      if (!response.ok) {
-        throw new Error('카테고리 데이터를 가져오지 못했습니다.');
-      }
-      const data = await response.json();
-      setFilteredCardsData(data);
-      setTotalCards(data.length);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const itemsPerPage = 9; // 페이지당 아이템 수
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-    filterCards(e.target.value);
-  };
+  const [selectedSummary, setSelectedSummary] = useState(false); // 선택된 요약글
+  const [selectedSummaryData, setSelectedSummaryData] = useState([]); // 선택된 요약글의 id
 
-  const filterCards = (query) => {
-    const filtered = allCardsData.filter((card) => {
-      const inSummary = card.summary.toLowerCase().includes(query.toLowerCase());
-      const inSelectedCategory = selectedCategory
-        ? card.category === selectedCategory
-        : true;
-      return inSummary && inSelectedCategory;
-    });
-    setFilteredCardsData(filtered);
-    setTotalCards(filtered.length);
-  };
+  // 검색어를 통해 요약글 목록을 필터링
+  const searchSummaryList = (query) => {
+    const filteredSummaryList = summaryList.filter((summary) => {
+      // 검색어가 요약에 포함되어 있는지 확인
+      const inSummary = summary.summary
+        .toLowerCase()
+        .includes(query.toLowerCase().trim());
 
-  const handleSearch = (query) => {
-    filterCards(query);
-  };
+      // 카테고리가 선택된 경우, 해당 카테고리에 맞는지 확인
+      const inSeledtedCategory = selectedCategory === 'ALL' || summary.category === selectedCategory;
+      return inSummary && inSeledtedCategory;
+    })
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const getCurrentPageCards = () => {
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    return filteredCardsData.slice(startIndex, endIndex);
-  };
-
-  const handleMoreClick = (card) => {
-    setSelectedCard(card);
-  };
-
-  const handleBackClick = () => {
-    setSelectedCard(null);
-  };
-
-  if (error) {
-    return <div>Error: {error}</div>;
+    // 검색 필터링된 요약글 목록을 업데이트 및 검색어 닫기 버튼 활성화
+    setSearchFilterSummaryList(filteredSummaryList);
+    setSearchClose(true);
   }
 
+  // 선택된 카테고리에 따라 요약글 목록을 필터링
+  const filteredSummaryList = selectedCategory === 'ALL'
+    ? summaryList
+    : summaryList.filter(summary => summary.category === selectedCategory);
+
+  // 현재 페이지에서 해당하는 데이터 자르기
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedList = filteredSummaryList.slice(startIndex, startIndex + itemsPerPage);
+
+  // 전체 페이지 수 계산
+  const pageSize = Math.ceil(filteredSummaryList.length / itemsPerPage);
+
+  // 페이지 변경 이벤트 핸들러
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  }
+
+  // 카테고리 클릭 이벤트 핸들러
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(selectedCategory === category ? 'ALL' : category);
+  }
+
+  // 원문 보기 버튼 클릭 이벤트 핸들러
+  const handleOriginalTextClick = async(summaryId) => {
+    const response = await axios.get(`${summaryListUrl}/${summaryId}`);
+
+    setSelectedSummaryData(response.data);
+    setSelectedSummary(true);
+  }
+
+  // 원문 뒤로가기 버튼 클릭 이벤트 핸들러
+  const handleBackClick = () => {
+    setSelectedSummary(false);
+  }
+
+  useEffect(() => {
+    // 카테고리 그룹 목록을 가져오는 비동기 함수
+    const getCategories = async() => {
+      const response = await axios.get(categoriesGroupUrl);
+      setCategories(response.data);
+    }
+
+    // 요약글 목록을 가져오는 비동기 함수
+    const getSummaryList = async() => {
+      const response  = await axios.get(summaryListUrl);
+
+      setSummaryList(response.data);
+    }
+
+    getCategories();
+    getSummaryList();
+  }, [])
+
   return (
-    <div className="app-container">
+    <>
       <Header
         searchQuery={searchQuery}
-        handleSearchChange={handleSearchChange}
-        onSearch={handleSearch}
+        setSearchQuery={setSearchQuery}
+        searchSummaryList={searchSummaryList}
+        searchClose={searchClose}
+        setSearchClose={setSearchClose}
       />
-  
-      <Categories categories={categories} onCategoryClick={handleCategoryClick} />
-  
-      <div className="cards-container">
-        {selectedCard ? (
-          <Summary
-          id={selectedCard.id}
-          summary={selectedCard.summary}
-          originalText={selectedCard.original_text} 
-          createdAt={selectedCard.created_at} 
-          viewCount={selectedCard.view_count} 
-          onBackClick={handleBackClick}
-        />
-        
-        ) : (
-          <Cards items={getCurrentPageCards()} onMoreClick={handleMoreClick} />
-        )}
-      </div>
-  
-      <footer>
-        <Pagination
-          total={totalCards}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      </footer>
-    </div>
-  );  
-}
 
-export default App;
+      <Categories 
+        categories={categories} 
+        handleCategoryClick={handleCategoryClick}
+        selectedSummary={selectedSummary}
+      />
+
+      {
+        // 선택된 요약글이 있으면 Summary 컴포넌트를, 없으면 Cards 컴포넌트를 렌더링
+        selectedSummary ? 
+        (<Summary 
+          selectedSummaryData={selectedSummaryData} 
+          handleBackClick={handleBackClick}
+        />) : 
+        (<Cards
+          // 검색어가 있으면 검색 필터링된 요약글 목록을, 없으면 페이지네이션된 요약글 목록을 렌더링
+          summaryList={searchQuery ? searchFilterSummaryList : paginatedList}
+          handleOriginalTextClick={handleOriginalTextClick}
+        />)
+      }
+
+      <Pagination 
+        currentPage={currentPage} 
+        pageSize={pageSize} 
+        handlePageChange={handlePageChange}
+      />
+
+      <FooterInfo />
+    </>
+  );
+}
