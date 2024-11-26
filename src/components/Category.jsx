@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import '../styles/nav.css';
 
-export default function Category({ category, count, handleCategoryClick }) {
+export default function Category({ category, count, handleCategoryClick, setCurrentPage }) {
     return (
         <div 
             className="nav-item"
-            onClick={() => handleCategoryClick(category)}
+            onClick={() => {
+                handleCategoryClick(category);
+                setCurrentPage(1);
+            }}
         >
             {category}
             <span className="count">({count})</span>
