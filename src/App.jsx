@@ -114,6 +114,7 @@ export default function App() {
         categories={categories} 
         handleCategoryClick={handleCategoryClick}
         selectedSummary={selectedSummary}
+        setCurrentPage={setCurrentPage} // 카테고리 클릭 시 페이지를 1로 초기화
       />
 
       {
