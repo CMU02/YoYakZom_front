@@ -1,4 +1,4 @@
-import '../styles/pagination.css';
+import '../styles/Pagination.css';
 
 export default function Pagination({ currentPage, pageSize, handlePageChange }) {
     return (
