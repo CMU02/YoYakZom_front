@@ -82,6 +82,13 @@ export default function App() {
     setSelectedSummary(false);
   }
 
+  // 검색 후 카테고리 클릭 시 검색어 초기화
+  const searchCloseHandler = () => {
+    setSearchClose(false);
+    setSearchQuery('');
+    setCurrentPage(1);
+  }
+
   useEffect(() => {
     // 카테고리 그룹 목록을 가져오는 비동기 함수
     const getCategories = async() => {
@@ -115,6 +122,7 @@ export default function App() {
         handleCategoryClick={handleCategoryClick}
         selectedSummary={selectedSummary}
         setCurrentPage={setCurrentPage} // 카테고리 클릭 시 페이지를 1로 초기화
+        searchCloseHandler={searchCloseHandler} // 검색 후 카테고리 클릭 시 검색어 초기화
       />
 
       {

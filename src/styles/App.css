@@ -1,12 +1,12 @@
 @font-face {
-    font-family: 'Dokrip';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff');
+    font-family: 'SkyBori';
+    src: url('/fonts/SKYBORI.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 html{
-    font-family: 'Dokrip';
+    font-family: 'SkyBori';
     margin: 0;
     padding: 0;
     background-image: url('/images/background.webp'); 

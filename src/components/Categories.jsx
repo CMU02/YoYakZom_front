@@ -2,7 +2,15 @@ import PropTypes from 'prop-types';
 import Category from './Category';
 import '../styles/nav.css';
 
-export default function Categories({ categories, handleCategoryClick, selectedSummary, setCurrentPage }) {
+export default function Categories(
+    { 
+        categories, 
+        handleCategoryClick, 
+        selectedSummary, 
+        setCurrentPage,
+        searchCloseHandler
+    }
+) {
     return (
         <>
             <nav className={!selectedSummary ? 'nav-container' : 'nav-container-summary-active'}>
@@ -15,6 +23,7 @@ export default function Categories({ categories, handleCategoryClick, selectedSu
                                 key={category}
                                 handleCategoryClick={handleCategoryClick}
                                 setCurrentPage={setCurrentPage}
+                                searchCloseHandler={searchCloseHandler}
                             />
                         )
                     })

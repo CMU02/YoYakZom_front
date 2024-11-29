@@ -6,6 +6,24 @@ import SummaryHeader from './SummaryHeader';
 export default function Summary({ selectedSummaryData, handleBackClick }) {
     const { id, summary, original_text, created_at, view_count } = selectedSummaryData;
 
+    const splitIntoParagraphs = (text) => {
+        return text.split('. ')
+            .map(sentence => sentence.trim())
+            .filter(Boolean)
+            .map((sentence, index) => {
+                return (
+                    <>
+                        <p key={index}>
+                            {sentence}
+                        </p>
+                    </>
+                );
+            });
+    }
+
+
+    const formattedText = splitIntoParagraphs(original_text);   
+
     return (
         <div className='summary-container' key={id}>
             <div className='summary'>
@@ -16,7 +34,7 @@ export default function Summary({ selectedSummaryData, handleBackClick }) {
                     handleBackClick={handleBackClick}
                 />
                 <div className="summary-content">
-                    {original_text}
+                    {formattedText}
                 </div>
             </div>
         </div>
