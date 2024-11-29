@@ -27,7 +27,7 @@ export default function Header({
                     <div className={!searchClose ? 'search-bar' : 'search-bar-active'}>
                         <input 
                             type="text" 
-                            placeholder="검색하기"
+                            placeholder="원하는 키워드를 입력하세요"
                             value={searchQuery}
                             onChange={(e) => {
                                 setSearchQuery(e.target.value);
