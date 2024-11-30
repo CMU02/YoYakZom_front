@@ -55,10 +55,9 @@ export default function Header({
                     >
                         <img src='/icons/search_icon.svg' alt='검색버튼'/>
                     </div>
-                    {/* 추후 확장프로그램 배포 성공하면 주석 풀 것 */}
-                    {/* <div className='add-extension'>
-                        <a href='/'>확장프로그램 3줄요약 추가하러가기</a>
-                    </div> */}
+                    <div className='add-extension'>
+                        <a href='https://chromewebstore.google.com/detail/3%EC%A4%84%EC%9A%94%EC%95%BD/dedncngegghidipajdpiaioklindkgke?hl=ko'>확장프로그램 3줄요약 추가하러가기</a>
+                    </div>
                 </div>
             </div>
         

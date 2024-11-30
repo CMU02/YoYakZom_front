@@ -168,8 +168,8 @@ header {
 }
 
 .add-extension {
-    width: 35vh;
-    height: 2.5vh;
+    width: 40vh;
+    height: 3.5vh;
     position: relative;
     top: 8.5vh;
     right: 59vh;
@@ -179,4 +179,5 @@ header {
 
 .add-extension > a {
     text-decoration: none;
+    font-size: 2.15vh;
 }
