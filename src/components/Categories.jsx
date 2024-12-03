@@ -13,21 +13,23 @@ export default function Categories(
 ) {
     return (
         <>
-            <nav className={!selectedSummary ? 'nav-container' : 'nav-container-summary-active'}>
-                {
-                    categories.map(({category, count}) => {
-                        return (
-                            <Category
-                                category={category} 
-                                count={count} 
-                                key={category}
-                                handleCategoryClick={handleCategoryClick}
-                                setCurrentPage={setCurrentPage}
-                                searchCloseHandler={searchCloseHandler}
-                            />
-                        )
-                    })
-                }
+            <nav className={!selectedSummary ? 'category-container' : 'category-summary-active'}>
+                <div className='nav-container'>
+                    {
+                        categories.map(({category, count}) => {
+                            return (
+                                <Category
+                                    category={category} 
+                                    count={count} 
+                                    key={category}
+                                    handleCategoryClick={handleCategoryClick}
+                                    setCurrentPage={setCurrentPage}
+                                    searchCloseHandler={searchCloseHandler}
+                                />
+                            )
+                        })
+                    }
+                </div>
             </nav>
         </>
     )

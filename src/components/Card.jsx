@@ -2,6 +2,20 @@ import '../styles/Card.css';
 import PropTypes from 'prop-types';
 
 export default function Card({id, category, summary, created_at, view_count, handleOriginalTextClick}) {
+
+    const formatWithH4 = (text) => {
+        // 요약 문자열을 줄 단위로 나눈 뒤, <h4> 태그로 포맷
+        const lines = text.split('\n');
+        return lines.map((line, index) => {
+            if (line.trim()) {
+                return (
+                    <h4 key={index}>{line.trim()}</h4>
+                );
+            }
+            return null; // 빈 줄은 무시
+        });
+    };
+
     return (
         <div className="card-container" key={id}>
             <div className="card-category">
@@ -9,7 +23,8 @@ export default function Card({id, category, summary, created_at, view_count, han
             </div>
 
             <div className="card-summary">
-                <h4>{summary}</h4>
+                {/* <h4>{summary}</h4> */}
+                {formatWithH4(summary)}
             </div>
 
             <hr className='card-hr' />

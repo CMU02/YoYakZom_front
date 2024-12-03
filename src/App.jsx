@@ -139,12 +139,15 @@ export default function App() {
         />)
       }
 
-      <Pagination 
-        currentPage={currentPage} 
-        pageSize={pageSize} 
-        handlePageChange={handlePageChange}
-      />
-
+      {
+        // 요약글 원문 보기 중이 아니면, 페이징 컴포넌트를 렌더링
+        !selectedSummary && 
+        <Pagination 
+          currentPage={currentPage} 
+          pageSize={pageSize} 
+          handlePageChange={handlePageChange}
+        />
+      }
       <FooterInfo />
     </>
   );
